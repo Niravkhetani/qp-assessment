@@ -1,0 +1,18 @@
+version: "1.0"
+
+services:
+  nodeserver:
+    build: # "context" and "dockerfile" fields have to be under "build"
+      context: .
+      dockerfile: ./node.Dockerfile
+  mysqlserver:
+    image: mysql:5.6
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: grocery_booking_system
+    volumes:
+      - ./data:/docker-entrypoint-initdb.d
